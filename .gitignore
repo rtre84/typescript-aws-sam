@@ -50,6 +50,9 @@ bower_components
 # node-waf configuration
 .lock-wscript
 
+# SAM local build in Webstorm
+.aws-sam/
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 

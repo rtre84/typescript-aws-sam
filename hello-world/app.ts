@@ -4,6 +4,8 @@ import echoThisString, { consoleLogSomething } from './services/example.service'
 const url = 'http://checkip.amazonaws.com/';
 let response;
 
+import { mw } from './mw'
+
 /**
  *
  * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
@@ -38,7 +40,8 @@ let response;
  * @returns {Object} object.body - JSON Payload to be returned
  * 
  */
-export async function lambdaHandler(event, context) {
+// export async function lambdaHandler(event, context) {
+export async function handler(event, context) {
     try {
         const ret = await axios(url);
         consoleLogSomething();
@@ -56,3 +59,6 @@ export async function lambdaHandler(event, context) {
 
     return response
 };
+
+// works with the WS built-in run/debug tool
+export const lambdaHandler = (event, context) => mw(handler)(event, context, {});

@@ -11,16 +11,17 @@
     "axios": "^0.18.0"
   },
   "scripts": {
-    "prebuild": "mkdirp ../dist || true",
+    "prebuild": "mkdir -p ../dist || true",
     "build-watch": "npm run prebuild && npm run copy-dependencies && tsc -w --preserveWatchOutput true",
     "build": "npm run prebuild && npm run copy-dependencies && tsc",
-    "copy-dependencies": "cpx \"./node_modules/**/*\" ../dist/node_modules",
+    "copy-dependencies": "cp -r \"./node_modules/\" ../dist/node_modules",
     "test": "mocha --require ts-node/register ./**/*.spec.ts",
     "start-api": "concurrently --kill-others --kill-others-on-fail \"npm run build-watch\" \"sam local start-api --template ../template.yaml\""
   },
   "devDependencies": {
     "@types/chai": "^4.2.12",
     "@types/mocha": "^5.2.7",
+    "aws-lambda": "^1.0.6",
     "chai": "^4.1.2",
     "concurrently": "^4.1.2",
     "cpx": "^1.5.0",
