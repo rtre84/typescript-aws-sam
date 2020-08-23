@@ -13,7 +13,7 @@
   "scripts": {
     "prebuild": "mkdir -p ../dist || true",
     "build-watch": "npm run prebuild && npm run copy-dependencies && tsc -w --preserveWatchOutput true",
-    "build": "npm run prebuild && npm run copy-dependencies && tsc",
+    "build": "npm run prebuild && npm run copy-dependencies && tsc && cp package.json ../dist",
     "copy-dependencies": "cp -r \"./node_modules/\" ../dist/node_modules",
     "test": "mocha --require ts-node/register ./**/*.spec.ts",
     "start-api": "concurrently --kill-others --kill-others-on-fail \"npm run build-watch\" \"sam local start-api --template ../template.yaml\""
